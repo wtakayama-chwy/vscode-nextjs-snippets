@@ -1,0 +1,24 @@
+{
+  "Storybook common structure": {
+    "prefix": "storybook",
+    "body": [
+      "import React from 'react';\n",
+      "import { Meta } from '@storybook/react/types-6-0';\n",
+      "export default {",
+      "\ttitle: '${1:${TM_FILENAME_BASE}}',",
+      "\tcomponent: ${1:${TM_FILENAME_BASE}},",
+      "\targTypes: {",
+      "\t\t${2:Args}",
+      "\t},",
+      "} as Meta\n",
+      "function Template(props) {",
+      "\treturn <${1:${TM_FILENAME_BASE}} {...props} />;",
+      "}\n",
+      "export const Default = Template.bind({});\n",
+      "Default.args = {",
+      "\t${3:KeyProp}",
+      "} as ${4:Props};"
+    ],
+    "description": ""
+  }
+}
