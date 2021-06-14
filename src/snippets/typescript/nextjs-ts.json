@@ -1,0 +1,277 @@
+{
+  "NextJS getServerSideProps React FC with TS": {
+    "prefix": "nextpage",
+    "body": [
+      "import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'\n",
+      "export default function ${1:${TM_FILENAME_BASE}}Page({",
+      "\tpageComponentProps",
+      "}: InferGetServerSidePropsType<typeof getServerSideProps>) {",
+      "\treturn (",
+      "\t\t<PageComponent {...pageComponentProps}>",
+      "\t\t\t<${1:${TM_FILENAME_BASE}}PageComponent",
+      "\t\t\t/>",
+      "\t\t</PageComponent>",
+      "\t)",
+      "}\n",
+      "export async function getServerSideProps(ctx: GetServerSidePropsContext) {",
+      "\treturn {",
+      "\t\tprops: {",
+      "\t\t\tpageComponentProps",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Next JS Page Component with TS and SSR"
+  },
+  "Custom _document Component": {
+    "prefix": "nextdocument",
+    "body": [
+      "import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document'\n",
+      "class MyDocument extends Document {",
+      "\tstatic async getInitialProps(ctx: DocumentContext) {",
+      "\t\tconst initalProps = await Document.getInitialProps(ctx)\n",
+      "\t\treturn initalProps",
+      "\t}\n",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<Html>",
+      "\t\t\t\t<Head>",
+      "\t\t\t\t\t${1}",
+      "\t\t\t\t</Head>",
+      "\t\t\t\t<body>",
+      "\t\t\t\t\t<Main />",
+      "\t\t\t\t\t<NextScript />",
+      "\t\t\t\t</body>",
+      "\t\t\t</Html>",
+      "\t\t)",
+      "\t}",
+      "}\n",
+      "export default MyDocument"
+    ],
+    "description": "Custom document component Next JS"
+  },
+  "Custom _app Component": {
+    "prefix": "nextapp",
+    "body": [
+      "import type { AppProps } from 'next/app'\n",
+      "import '../styles.css'\n",
+      "export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {",
+      "\treturn (",
+      "\t\t<Component {...pageProps} />",
+      "\t)",
+      "}\n"
+    ],
+    "description": "Custom app component Next JS"
+  },
+  "Default error Component": {
+    "prefix": "nexterrordefault",
+    "body": [
+      "import Error from 'next'\n",
+      "export async function getServerSideProps() {",
+      "\tconst res = await fetch('https://api.github.com/repos/vercel/next.js')",
+      "\tconst errorCode = res.ok ? false : res.statusCode",
+      "\tconst json = await res.json()\n",
+      "\treturn {",
+      "\t\tprops: { errorCode, stars: json.stargazers_count }",
+      "\t}",
+      "}\n",
+      "export default function Page({ errorCode, stars }) {",
+      "\tif (errorCode) {",
+      "\t\treturn <Error statusCode={errorCode} />",
+      "\t}\n",
+      "\treturn <div>Next stars: {stars}</div>",
+      "}"
+    ],
+    "description": "If you want to render the built-in error page you can by importing the `Error` component. <b>IMPORTANT:</b> if you have a custom `Error` component be sure to import that one instead. <br/>`next/error` exports the default component used by Next.js."
+  },
+  "Custom error Component": {
+    "prefix": "nexterrorcustom",
+    "body": [
+      "import { NextPageContext } from 'next'\n",
+      "export default function Error({ statusCode }: { statusCode: number }) {",
+      "\treturn (",
+      "\t\t<p>",
+      "\t\t\t{statusCode",
+      "\t\t\t\t? `An error \\${statusCode} occurred on server`",
+      "\t\t\t\t: 'An error occurred on client'",
+      "\t\t\t}",
+      "\t\t</p>",
+      "\t)",
+      "}\n",
+      "Error.getInitialProps = ({ res, err, ...context }: NextPageContext) => {",
+      "\tif(res) {",
+      "\t\treturn { statusCode: res.statusCode }",
+      "\t}",
+      "\treturn { statusCode: err ? err.statusCode :400 }",
+      "}\n"
+    ],
+    "description": "Custom error component Next JS. You must create a file \"_error.ts\" inside your \"pages\" folder"
+  },
+  "Custom 404 NotFound Page": {
+    "prefix": "next404",
+    "body": [
+      "${1}// pages/404.tsx",
+      "export default function Custom404() {",
+      "\treturn (",
+      "\t\t<>",
+      "\t\t\t<h1>404 - Page Not Found</h1>",
+      "\t\t</>",
+      "\t)",
+      "}"
+    ],
+    "description": "Custom 404 page NotFound. You must create a 404.tsx file inside \"page\" folder"
+  },
+  "Custom 500 ServerError Page": {
+    "prefix": "next500",
+    "body": [
+      "${1}// pages/500.tsx",
+      "export default function Custom500() {",
+      "\treturn (",
+      "\t\t<>",
+      "\t\t\t<h1>500 - Server-side error occurred</h1>",
+      "\t\t</>",
+      "\t)",
+      "}"
+    ],
+    "description": "Custom 500 page for server-side error. You must create a 500.tsx file inside \"page\" folder"
+  },
+  "Async function getServerSideProps": {
+    "prefix": "nextgetSSRProps",
+    "body": [
+      "// You should use getServerSideProps when:",
+      "// - Only if you need to pre-render a page whose data must be fetched at request time",
+      "import { GetServerSideProps } from 'next'\n",
+      "export const getServerSideProps: GetServerSideProps = async (ctx) => {",
+      "\tconst { data } = await ${1} // your fetch function here \n",
+      "\treturn {",
+      "\t\tprops: {",
+      "\t\t\t${2}",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Async function getServerSideProps - (Server-side Rendering): Fetch data on each request."
+  },
+  "Async function getStaticProps": {
+    "prefix": "nextgetStaticProps",
+    "body": [
+      "// You should use getStaticProps when:",
+      "//- The data required to render the page is available at build time ahead of a user’s request.",
+      "//- The data comes from a headless CMS.",
+      "//- The data can be publicly cached (not user-specific).",
+      "//- The page must be pre-rendered (for SEO) and be very fast — getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance.",
+      "import { GetStaticProps } from 'next'\n",
+      "export const getStaticProps: GetStaticProps = async (ctx) => {",
+      "\tconst { data } = await ${1} // your fetch function here \n",
+      "\treturn {",
+      "\t\tprops: {",
+      "\t\t\t${2}",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Async function getStaticProps - (Static Generation): Fetch data at build time."
+  },
+  "Async function getStaticPaths": {
+    "prefix": "nextgetStaticPaths",
+    "body": [
+      "// You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes",
+      "import { GetStaticPaths } from 'next'\n",
+      "export const getStaticPaths: GetStaticPaths = async (ctx) => {",
+      "\tconst { data } = await ${1} // your fetch function here \n",
+      "\treturn {",
+      "\t\tpaths: [",
+      "\t\t\t{",
+      "\t\t\t\tparams: {",
+      "\t\t\t\t\t${2}",
+      "\t\t\t\t}",
+      "\t\t\t}",
+      "\t\t],",
+      "\t\tfallback: ${3|\"blocking\",true,false|}",
+      "\t}",
+      "}"
+    ],
+    "description": "Async function getStaticPaths - (Static Generation): Specify dynamic routes to pre-render pages based on data."
+  },
+  "API Routes": {
+    "prefix": "nextapi",
+    "body": [
+      "import type { NextApiRequest, NextApiResponse } from 'next'\n",
+      "type ${1}Data = {",
+      "\t${2}name: string",
+      "}\n",
+      "export default function ${3}(req: NextApiRequest, res: NextApiResponse<${1}Data>) {",
+      "\tres.status(200).json({ ${2}name: 'Example' })",
+      "}"
+    ],
+    "description": "Next JS simple api routes with TS"
+  },
+  "Dynamic imports": {
+    "prefix": "nextdynamic",
+    "body": [
+      "import dynamic from 'next/dynamic'\n",
+      "const DynamicComponent = dynamic(() => import('../components/${1}Component'))"
+    ],
+    "description": "A dynamic imports is a good way to split your code into manageable chunks."
+  },
+  "Dynamic imports with custom loading": {
+    "prefix": "nextdynamicloading",
+    "body": [
+      "import dynamic from 'next/dynamic'\n",
+      "const DynamicComponentWithCustomLoading = dynamic(",
+      "\t() => import('../components/${1}Component'),",
+      "\t{ loading: () => <p>${2}My Custom Loading</p> }",
+      ")"
+    ],
+    "description": "In cases where you want to overwrite a Loading Component while using dynamic imports."
+  },
+  "Dynamic imports without SSR": {
+    "prefix": "nextdynamicnossr",
+    "body": [
+      "import dynamic from 'next/dynamic'\n",
+      "const DynamicComponentWithNoSSR = dynamic(",
+      "\t() => import('../components/${1}Component'),",
+      "\t{ ssr: false }",
+      ")"
+    ],
+    "description": "In cases where you don't want import on server-side (SSR) while using dynamic imports."
+  },
+  "Import useRouter": {
+    "prefix": "imrouter",
+    "body": ["import { useRouter } from 'next/router'\n"],
+    "description": "Import useRouter"
+  },
+  "Import Next Link Component": {
+    "prefix": "imlink",
+    "body": ["import Link from 'next/link'\n"],
+    "description": "Import Next Link Component"
+  },
+  "Import Next Image Component": {
+    "prefix": "imimg",
+    "body": ["import Image from 'next/image'\n"],
+    "description": "Import Next Image Component"
+  },
+  "Import Next Head Component": {
+    "prefix": "imhead",
+    "body": ["import Head from 'next/head'\n"],
+    "description": "Import Next Head Component"
+  },
+  "Use Next Image Component": {
+    "prefix": "nextimg",
+    "body": [
+      "<Image",
+      "\twidth={${1}}",
+      "\theight={${1}}",
+      "\tobjectFit=\"cover\"",
+      "\tsrc={${2}}",
+      "\talt=\"${3}\"",
+      "/>"
+    ],
+    "description": "Use Next Image Component"
+  },
+  "Use Next Link Component": {
+    "prefix": "nextlink",
+    "body": ["<Link href=\"${1}\">", "\t<a>${2}</a>", "</Link>"],
+    "description": "Use Next Link Component"
+  }
+}
