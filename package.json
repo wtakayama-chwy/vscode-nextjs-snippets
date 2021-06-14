@@ -1,7 +1,7 @@
 {
   "name": "vscode-nextjs-snippets",
   "displayName": "vscode-nextjs-snippets",
-  "description": "Snippets to improve your performance while working with NextJS using TS",
+  "description": "Snippets to improve your performance while working with NextJS using TSX or JSX",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.56.0"
@@ -9,42 +9,46 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:vscode-nextjs-snippets.mycustomteste"
-  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-nextjs-snippets.mycustomteste",
-        "title": "My Custom Test"
+        "command": "vscode-nextjs-snippets.snippetSearch",
+        "title": "Search for snippets"
       }
     ],
     "snippets": [
       {
         "language": "typescriptreact",
-        "path": "./src/snippets/nextjs.json"
+        "path": "./src/snippets/typescript/nextjs-ts.json"
       },
       {
-        "language": "typescriptreact",
-        "path": "./src/snippets/react.json"
-      },
-      {
-        "language": "typescriptreact",
-        "path": "./src/snippets/storybook.json"
+        "language": "javascriptreact",
+        "path": "./src/snippets/javascript/nextjs-js.json"
       }
     ]
   },
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "activationEvents": [
+    "onCommand:extension.snippetSearch"
+  ],
+  "keybindings": [
+    {
+      "command": "extension.snippetSearch",
+      "key": "ctrl+alt+r",
+      "mac": "shift+cmd+r",
+      "when": "editorTextFocus"
+    }
+  ],
   "scripts": {
     "vscode:prepublish": "yarn run package",
     "compile": "webpack",
     "watch": "webpack --watch",
     "package": "webpack --mode production --devtool hidden-source-map",
-    "test-compile": "tsc -p ./",
-    "test-watch": "tsc -watch -p ./",
-    "pretest": "yarn run test-compile && yarn run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "lint": "eslint src --ext ts"
   },
   "devDependencies": {
     "@types/vscode": "^1.56.0",
