@@ -1,24 +1,72 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
+import { jsSnippets } from "./snippets/javascript/index";
+import { tsSnippets } from "./snippets/typescript/index";
+import { Snippet } from "./types/Snippet";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+interface Result extends Omit<Snippet, "prefix"> {
+  id: number;
+  label: string;
+  value: string;
+}
+
+const convertSnippetToArr = (arr: string[]): string => arr.join("\n");
+
 export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
-  console.log("Your custom extesion has been activated!!!");
+  console.log("NextJS Snippets extension has been activated!");
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand(
-    "vscode-nextjs-snippets.mycustomteste",
-    () => {
-      // The code you place here will be executed every time your command is executed
+  const disposable = vscode.commands.registerCommand(
+    "extension.snippetSearch",
+    async () => {
+      const javascriptSnippets = Object.values(jsSnippets);
+      const typescriptSnippets = Object.values(tsSnippets);
+      const mergedSnippets: Snippet[] = [
+        ...javascriptSnippets,
+        ...typescriptSnippets,
+      ];
 
-      // Display a message box to the user
-      vscode.window.showInformationMessage("My custom extesion for VSCode");
+      const normalizedSnippets: Result[] = mergedSnippets.reduce(
+        (snippets: Result[], snippet: Snippet, i: number) => {
+          const value =
+            typeof snippet.prefix === "string"
+              ? snippet.prefix
+              : snippet.prefix[0];
+          snippets = [
+            ...snippets,
+            {
+              id: i,
+              body: snippet.body,
+              label: value,
+              value: value,
+              description: snippet.description,
+            },
+          ];
+
+          return snippets;
+        },
+        []
+      );
+
+      const options: vscode.QuickPickOptions = {
+        matchOnDescription: true,
+        matchOnDetail: true,
+        placeHolder: "Search snippet",
+      };
+
+      const snippet = (await vscode.window.showQuickPick(
+        normalizedSnippets,
+        options
+      )) || {
+        body: "",
+      };
+
+      const activeTxtEditor = vscode.window.activeTextEditor;
+      const body =
+        typeof snippet.body === "string"
+          ? snippet.body
+          : convertSnippetToArr(snippet.body);
+
+      activeTxtEditor &&
+        activeTxtEditor.insertSnippet(new vscode.SnippetString(body));
     }
   );
 
@@ -26,4 +74,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate(context: vscode.ExtensionContext) {
+  console.log("NextJS Snippets extension has been deactivated");
+}
