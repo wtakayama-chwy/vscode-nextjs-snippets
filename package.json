@@ -2,7 +2,7 @@
   "name": "vscode-nextjs-snippets",
   "displayName": "NEXTJS Snippets tsx and jsx",
   "description": "Snippets to improve your performance while working with NextJS using tsx or jsx",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.56.0"
   },
@@ -15,6 +15,9 @@
   "categories": [
     "Snippets"
   ],
+  "bugs": {
+    "url": "https://github.com/william-takayama/vscode-nextjs-snippets/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/william-takayama/vscode-nextjs-snippets"
@@ -26,39 +29,39 @@
     "javascript",
     "typescript"
   ],
-  "main": "./dist/extension.js",
+  "main": "./dist/index.js",
+  "activationEvents": [
+    "onCommand:extension.snippetSearch"
+  ],
   "contributes": {
     "commands": [
       {
-        "command": "vscode-nextjs-snippets.snippetSearch",
+        "command": "extension.snippetSearch",
         "title": "Search for snippets"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.snippetSearch",
+        "key": "ctrl+alt+r",
+        "mac": "shift+cmd+r",
+        "when": "editorTextFocus"
       }
     ],
     "snippets": [
       {
         "language": "typescriptreact",
-        "path": "./src/snippets/typescript/nextjs-ts.json"
+        "path": "./snippets/typescript/nextjs-ts.json"
       },
       {
         "language": "javascriptreact",
-        "path": "./src/snippets/javascript/nextjs-js.json"
+        "path": "./snippets/javascript/nextjs-js.json"
       }
     ]
   },
   "extensionKind": [
     "ui",
     "workspace"
-  ],
-  "activationEvents": [
-    "onCommand:extension.snippetSearch"
-  ],
-  "keybindings": [
-    {
-      "command": "extension.snippetSearch",
-      "key": "ctrl+alt+r",
-      "mac": "shift+cmd+r",
-      "when": "editorTextFocus"
-    }
   ],
   "scripts": {
     "vscode:prepublish": "yarn run package",
