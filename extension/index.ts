@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
-import { jsSnippets } from "./snippets/javascript/index";
-import { tsSnippets } from "./snippets/typescript/index";
-import { Snippet } from "./types/Snippet";
+import { jsSnippets } from "../snippets/javascript/index";
+import { tsSnippets } from "../snippets/typescript/index";
+import { Snippet, SnippetJson } from "./types/Snippet";
 
 interface Result extends Omit<Snippet, "prefix"> {
   id: number;
@@ -17,8 +17,8 @@ export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
     "extension.snippetSearch",
     async () => {
-      const javascriptSnippets = Object.values(jsSnippets);
-      const typescriptSnippets = Object.values(tsSnippets);
+      const javascriptSnippets = Object.values(jsSnippets as SnippetJson);
+      const typescriptSnippets = Object.values(tsSnippets as SnippetJson);
       const mergedSnippets: Snippet[] = [
         ...javascriptSnippets,
         ...typescriptSnippets,
