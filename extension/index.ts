@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
-import { jsSnippets } from "../snippets/javascript/index";
-import { tsSnippets } from "../snippets/typescript/index";
 import { Snippet, SnippetJson } from "./types/Snippet";
+
+const jsSnippets = require("../snippets/javascript/nextjs-js.json");
+const tsSnippets = require("../snippets/typescript/nextjs-ts.json");
 
 interface Result extends Omit<Snippet, "prefix"> {
   id: number;
