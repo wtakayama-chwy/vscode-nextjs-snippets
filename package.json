@@ -2,7 +2,7 @@
   "name": "vscode-nextjs-snippets",
   "displayName": "NEXTJS Snippets tsx and jsx",
   "description": "Snippets to improve your performance while working with NextJS using tsx or jsx",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.56.0"
   },
@@ -29,7 +29,7 @@
     "javascript",
     "typescript"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/extension.js",
   "activationEvents": [
     "onCommand:extension.snippetSearch"
   ],
@@ -43,8 +43,8 @@
     "keybindings": [
       {
         "command": "extension.snippetSearch",
-        "key": "ctrl+alt+r",
-        "mac": "shift+cmd+r",
+        "key": "ctrl+shift+alt+s",
+        "mac": "shift+cmd+alt+s",
         "when": "editorTextFocus"
       }
     ],
