@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Released]
 
+[0.2.0] - 2021-06-19
+
+- Register shortcut correctly and udpate link from badges
+
 [0.1.0] - 2021-06-14
 
 - NextJS Snippets for tsx and jsx
