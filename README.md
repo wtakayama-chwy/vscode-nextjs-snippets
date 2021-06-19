@@ -1,7 +1,7 @@
-[![Version](https://vsmarketplacebadge.apphb.com/version/vscode-nextjs-snippets.svg)](https://vsmarketplacebadge.apphb.com/version-short/vscode-nextjs-snippets.svg)
-[![Install](https://vsmarketplacebadge.apphb.com/installs/vscode-nextjs-snippets.svg)](https://vsmarketplacebadge.apphb.com/installs-short/vscode-nextjs-snippets.svg)
-[![Downloads](https://vsmarketplacebadge.apphb.com/downloads/vscode-nextjs-snippets.svg)](https://vsmarketplacebadge.apphb.com/downloads-short/vscode-nextjs-snippets.svg)
-[![Ratings](https://vsmarketplacebadge.apphb.com/rating-short/vscode-nextjs-snippets.svg)](https://vsmarketplacebadge.apphb.com/rating-short/vscode-nextjs-snippets.svg)
+[![Version](https://vsmarketplacebadge.apphb.com/version/willstakayama.vscode-nextjs-snippets.svg)](https://vsmarketplacebadge.apphb.com/version-short/willstakayama.vscode-nextjs-snippets.svg)
+[![Install](https://vsmarketplacebadge.apphb.com/installs/willstakayama.vscode-nextjs-snippets.svg)](https://vsmarketplacebadge.apphb.com/installs-short/willstakayama.vscode-nextjs-snippets.svg)
+[![Downloads](https://vsmarketplacebadge.apphb.com/downloads/willstakayama.vscode-nextjs-snippets.svg)](https://vsmarketplacebadge.apphb.com/downloads-short/willstakayama.vscode-nextjs-snippets.svg)
+[![Ratings](https://vsmarketplacebadge.apphb.com/rating-short/willstakayama.vscode-nextjs-snippets.svg)](https://vsmarketplacebadge.apphb.com/rating-short/willstakayama.vscode-nextjs-snippets.svg)
 
 # VSCode NextJS React snippets for TSX and JSX
 
@@ -43,8 +43,8 @@ ext install vscode-nextjs-snippets
 
 You can search through snippets with `snippet search` command which can be run:
 
-- [Windows] and [Linux] `CMD + ALT + R`
-- [maxOS] `CMD + Shift + P`
+- [Windows] and [Linux] `CMD + SHIFT + ALT + S`
+- [maxOS] `CMD + Shift + ALT + S`
 
 ## Supported languages (file extensions) <a name="languages"></a>
 
