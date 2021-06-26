@@ -49,7 +49,9 @@ You can search through snippets with `snippet search` command which can be run:
 ## Supported languages (file extensions) <a name="languages"></a>
 
 - JavaScript React (.jsx)
+- JavaScript (.js)
 - TypeScript React (.tsx)
+- TypeScript (.ts)
 
 ## NextJS Snippets List <a name="snippets-list"></a>
 
