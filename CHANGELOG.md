@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Released]
 
+[0.3.0] - 2021-06-26
+
+- Add support to TS and JS files
+
 [0.2.0] - 2021-06-19
 
 - Register shortcut correctly and udpate link from badges
