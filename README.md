@@ -190,9 +190,9 @@ import Document, {
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initalProps = await Document.getInitialProps(ctx);
+    const initialProps = await Document.getInitialProps(ctx);
 
-    return initalProps;
+    return initialProps;
   }
 
   render() {
